@@ -1,0 +1,2 @@
+Uninstall-package Microsoft.CodeDom.Providers.DotNetCompilerPlatform
+Uninstall-package Microsoft.Net.Compilers

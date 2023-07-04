@@ -1,0 +1,59 @@
+﻿@model Rental_Car.Models.LoginModel
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<section>
+    <div class="container">
+        <div class="text-center">
+            <h1>Login</h1>
+            <p class="text-danger small font-weight-bold text-center">
+                @Html.ValidationMessage("InvalidLoginError")
+            </p>
+            <hr /><br />
+            @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { @class = "form-horizontal" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-group">
+                    <label for="email" class="col-sm-2 control-label">Email</label>
+                    <div class="col-sm-10">
+                        @*<input type="email" id="email" placeholder="Email" class="form-control">*@
+                        @Html.EditorFor(model => model.email_address, new
+                   {
+                       htmlAttributes = new
+                       {
+                           @class =
+                            "form-control",
+                           placeholder = "Email Address"
+                       }
+                   })
+                        @Html.ValidationMessageFor(model => model.email_address, "", new { @class = "text-danger small font-weight-bold" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="col-sm-2 control-label">Password</label>
+                    <div class="col-sm-10">
+                        @Html.EditorFor(model => model.user_password, new
+                                    {
+                                        htmlAttributes = new
+                                        {
+                                            @class = "form-control",
+                                            placeholder = "Password",
+                                            type = "password"
+                                        }
+                                    })
+                        @Html.ValidationMessageFor(model => model.user_password, "", new { @class = "text-danger small font-weight-bold" })
+                    </div>
+                </div>
+                <div class="pull-right">
+                    <button type="submit" class="btn btn-success btn-block" style="width: 200px">Login</button>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+
+

@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="db_rental_carModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tb_bookings">
+          <Key>
+            <PropertyRef Name="booking_id" />
+          </Key>
+          <Property Name="booking_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="car_booked" Type="int" />
+          <Property Name="pickup_location" Type="varchar" MaxLength="100" />
+          <Property Name="return_location" Type="varchar" MaxLength="100" />
+          <Property Name="pickup_datetime" Type="datetime" />
+          <Property Name="return_datetime" Type="datetime" />
+          <Property Name="sub_total" Type="decimal" Precision="7" Scale="2" />
+          <Property Name="booked_at" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tb_cars">
+          <Key>
+            <PropertyRef Name="car_id" />
+          </Key>
+          <Property Name="car_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="car_name" Type="varchar" MaxLength="100" />
+          <Property Name="model" Type="varchar" MaxLength="100" />
+          <Property Name="make" Type="varchar" MaxLength="100" />
+          <Property Name="picture" Type="varchar(max)" />
+          <Property Name="rent_price" Type="decimal" Precision="7" Scale="2" />
+          <Property Name="description" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="tb_users">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_name" Type="varchar" MaxLength="100" />
+          <Property Name="contact_num" Type="varchar" MaxLength="15" />
+          <Property Name="email_address" Type="varchar" MaxLength="100" />
+          <Property Name="user_password" Type="varchar" MaxLength="20" />
+          <Property Name="user_address" Type="varchar" MaxLength="250" />
+          <Property Name="gender" Type="varchar" MaxLength="10" />
+          <Property Name="role" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__tb_bookin__car_b__2F10007B">
+          <End Role="tb_cars" Type="Self.tb_cars" Multiplicity="0..1" />
+          <End Role="tb_bookings" Type="Self.tb_bookings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_cars">
+              <PropertyRef Name="car_id" />
+            </Principal>
+            <Dependent Role="tb_bookings">
+              <PropertyRef Name="car_booked" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tb_bookin__user___2E1BDC42">
+          <End Role="tb_users" Type="Self.tb_users" Multiplicity="0..1" />
+          <End Role="tb_bookings" Type="Self.tb_bookings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="tb_bookings">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="db_rental_carModelStoreContainer">
+          <EntitySet Name="tb_bookings" EntityType="Self.tb_bookings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_cars" EntityType="Self.tb_cars" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_users" EntityType="Self.tb_users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__tb_bookin__car_b__2F10007B" Association="Self.FK__tb_bookin__car_b__2F10007B">
+            <End Role="tb_cars" EntitySet="tb_cars" />
+            <End Role="tb_bookings" EntitySet="tb_bookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tb_bookin__user___2E1BDC42" Association="Self.FK__tb_bookin__user___2E1BDC42">
+            <End Role="tb_users" EntitySet="tb_users" />
+            <End Role="tb_bookings" EntitySet="tb_bookings" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="db_rental_carModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tb_bookings">
+          <Key>
+            <PropertyRef Name="booking_id" />
+          </Key>
+          <Property Name="booking_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="car_booked" Type="Int32" />
+          <Property Name="pickup_location" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="return_location" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="pickup_datetime" Type="DateTime" Precision="3" />
+          <Property Name="return_datetime" Type="DateTime" Precision="3" />
+          <Property Name="sub_total" Type="Decimal" Precision="7" Scale="2" />
+          <Property Name="booked_at" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tb_cars" Relationship="Self.FK__tb_bookin__car_b__2F10007B" FromRole="tb_bookings" ToRole="tb_cars" />
+          <NavigationProperty Name="tb_users" Relationship="Self.FK__tb_bookin__user___2E1BDC42" FromRole="tb_bookings" ToRole="tb_users" />
+        </EntityType>
+        <EntityType Name="tb_cars">
+          <Key>
+            <PropertyRef Name="car_id" />
+          </Key>
+          <Property Name="car_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="car_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="model" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="make" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="picture" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="rent_price" Type="Decimal" Precision="7" Scale="2" />
+          <Property Name="description" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tb_bookings" Relationship="Self.FK__tb_bookin__car_b__2F10007B" FromRole="tb_cars" ToRole="tb_bookings" />
+        </EntityType>
+        <EntityType Name="tb_users">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="contact_num" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="email_address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="user_password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="user_address" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="role" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tb_bookings" Relationship="Self.FK__tb_bookin__user___2E1BDC42" FromRole="tb_users" ToRole="tb_bookings" />
+        </EntityType>
+        <Association Name="FK__tb_bookin__car_b__2F10007B">
+          <End Role="tb_cars" Type="Self.tb_cars" Multiplicity="0..1" />
+          <End Role="tb_bookings" Type="Self.tb_bookings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_cars">
+              <PropertyRef Name="car_id" />
+            </Principal>
+            <Dependent Role="tb_bookings">
+              <PropertyRef Name="car_booked" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tb_bookin__user___2E1BDC42">
+          <End Role="tb_users" Type="Self.tb_users" Multiplicity="0..1" />
+          <End Role="tb_bookings" Type="Self.tb_bookings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="tb_bookings">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="db_rental_carEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tb_bookings" EntityType="Self.tb_bookings" />
+          <EntitySet Name="tb_cars" EntityType="Self.tb_cars" />
+          <EntitySet Name="tb_users" EntityType="Self.tb_users" />
+          <AssociationSet Name="FK__tb_bookin__car_b__2F10007B" Association="Self.FK__tb_bookin__car_b__2F10007B">
+            <End Role="tb_cars" EntitySet="tb_cars" />
+            <End Role="tb_bookings" EntitySet="tb_bookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tb_bookin__user___2E1BDC42" Association="Self.FK__tb_bookin__user___2E1BDC42">
+            <End Role="tb_users" EntitySet="tb_users" />
+            <End Role="tb_bookings" EntitySet="tb_bookings" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="db_rental_carModelStoreContainer" CdmEntityContainer="db_rental_carEntities">
+          <EntitySetMapping Name="tb_bookings">
+            <EntityTypeMapping TypeName="db_rental_carModel.tb_bookings">
+              <MappingFragment StoreEntitySet="tb_bookings">
+                <ScalarProperty Name="booking_id" ColumnName="booking_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="car_booked" ColumnName="car_booked" />
+                <ScalarProperty Name="pickup_location" ColumnName="pickup_location" />
+                <ScalarProperty Name="return_location" ColumnName="return_location" />
+                <ScalarProperty Name="pickup_datetime" ColumnName="pickup_datetime" />
+                <ScalarProperty Name="return_datetime" ColumnName="return_datetime" />
+                <ScalarProperty Name="sub_total" ColumnName="sub_total" />
+                <ScalarProperty Name="booked_at" ColumnName="booked_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_cars">
+            <EntityTypeMapping TypeName="db_rental_carModel.tb_cars">
+              <MappingFragment StoreEntitySet="tb_cars">
+                <ScalarProperty Name="car_id" ColumnName="car_id" />
+                <ScalarProperty Name="car_name" ColumnName="car_name" />
+                <ScalarProperty Name="model" ColumnName="model" />
+                <ScalarProperty Name="make" ColumnName="make" />
+                <ScalarProperty Name="picture" ColumnName="picture" />
+                <ScalarProperty Name="rent_price" ColumnName="rent_price" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_users">
+            <EntityTypeMapping TypeName="db_rental_carModel.tb_users">
+              <MappingFragment StoreEntitySet="tb_users">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="contact_num" ColumnName="contact_num" />
+                <ScalarProperty Name="email_address" ColumnName="email_address" />
+                <ScalarProperty Name="user_password" ColumnName="user_password" />
+                <ScalarProperty Name="user_address" ColumnName="user_address" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="role" ColumnName="role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

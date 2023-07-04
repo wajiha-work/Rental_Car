@@ -1,0 +1,68 @@
+﻿@model Rental_Car.Models.tb_cars
+
+@{
+    ViewBag.Title = "View Car";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<div class="container">
+    <h2 class="text-center">View Car</h2>
+
+    <div class="container">
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.car_name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.car_name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.model)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.model)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.make)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.make)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.picture)
+            </dt>
+
+            <dd>
+                <img src="@Html.DisplayFor(model => model.picture)" height="200" />
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.rent_price)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.rent_price)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.description)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.description)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "EditCar", new { id = Model.car_id }) |
+        @Html.ActionLink("Back to List", "CarsList")
+    </p>
+</div>

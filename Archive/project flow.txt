@@ -1,0 +1,91 @@
+Create Project
+Build
+Create DB
+Add DB: 
+	// Right click on model and add ado
+Build
+Add Folder: Template and copy non html content in it
+Add Folder: Shared in View and create Layout.cshtml 
+	// Paste header + @RenderBody() + footer codes
+	// Change references
+Add Controller: HomeController (Empty)
+Add View of Index - set with template and layout page - run
+Set About and Contact pages inside HomeController too.
+Add using Rental_Car.Models; + db context property  for db use
+
+Register:
+- Method in HomeController
+- Set template
+- at top of view: @model Project_Name.Models.table_name
+- Replace stuff with html helpers + validation messages
+- write post method of register
+- server side validation by data annotations in model + if model.state in controller
+
+Login:
+- Create LoginModel and copy two fields email and password (from tb_users class) along with Required Data Annotation
+- Write get controller method
+- Copy content of view from register and make changes + add validation message box of html helper
+- Write post method
+- Add [ValidateAntiForgeryToken] after [HttpPost]; also, inside curly brackets of html helper form add this: @Html.AntiForgeryToken() 
+- In web.config file, ctrl+F for system.web tag and add this inside for authentication. Write this: 
+<authentication mode="Forms"><forms loginUrl="/Home/Login"></forms></authentication>
+
+Layout Page:
+- Add "Welcome, Wajiha" in Navbar, change navbar links a/c to project needs, remove .html ref.s
+- If else on links and stuff on navbar
+- Give @Url.Action to href of anchors
+- Role wise if else in logged-in account opt.s
+
+Logout:
+- kill session variables and authentication forms. And redirect to login page
+
+
+CRUD Cars at admin side:
+- signup and change role in sql server to admin
+
+
+AddCar:
+- write get method
+- generate view using template
+- data annotations in model
+- write post method (without image)
+
+
+CarsList:
+- Single method
+- view by template
+- fill method
+
+
+ViewCar:
+- Single method
+- view by template
+- fill method
+
+EditCar:
+- Get method to fetch detials from DB
+- View by tempalte
+- post method
+
+DeleteCar:
+- Get method to fetch details from DB
+- View by template
+- post method
+
+Change links in CRUD pages to our action  method names
+
+Image Upload:
+- Check MS Word DOC
+- Just for edit copy controller code from project folder as its bit lengthy
+
+
+Fleet:
+- Write action method to fetch all cars and display
+- Create view file
+	* write html code from template
+	* add model ienum at top
+	* foreach loop for 1 card
+	* image style to set width and height
+	* fill content with loop variable to print stuff from DB
+	* add book now url to jump to new page with id
+- 

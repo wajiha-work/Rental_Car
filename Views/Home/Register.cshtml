@@ -1,0 +1,213 @@
+﻿@model Rental_Car.Models.tb_users
+
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<section>
+    <div class="container">
+        <div class="text-center">
+            <h1>Register Account</h1>
+            <hr /><br />
+            @using (Html.BeginForm("Register", "Home", FormMethod.Post, new { @class = "form-horizontal" }))
+            {
+
+                <div class="form-group">
+                    <label for="firstName" class="col-sm-2 control-label">Full Name</label>
+                    <div class="col-sm-10">
+                        @*<input type="text" id="firstName" placeholder="Full Name" class="form-control" autofocus>*@
+
+                        @Html.EditorFor(model => model.user_name, new
+                   {
+                       htmlAttributes = new
+                       {
+                           @class = "form-control",
+                           placeholder = "Full Name",
+                           autofocus = "true"
+                       }
+                   })
+                        @Html.ValidationMessageFor(model => model.user_name, "", new { @class = "text-danger small font-weight-bold" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="col-sm-2 control-label">Email</label>
+                    <div class="col-sm-10">
+                        @*<input type="email" id="email" placeholder="Email" class="form-control">*@
+                        @Html.EditorFor(model => model.email_address, new
+                   {
+                       htmlAttributes = new
+                       {
+                           @class =
+                            "form-control",
+                           placeholder = "Email Address"
+                       }
+                   })
+                        @Html.ValidationMessageFor(model => model.email_address, "", new { @class = "text-danger small font-weight-bold" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="col-sm-2 control-label">Password</label>
+                    <div class="col-sm-10">
+                        @*<input type="password" id="password" placeholder="Password" class="form-control">*@
+                        @Html.EditorFor(model => model.user_password, new
+                                    {
+                                        htmlAttributes = new
+                                        {
+                                            @class = "form-control",
+                                            placeholder = "Password",
+                                            type = "password"
+                                        }
+                                    })
+                        @Html.ValidationMessageFor(model => model.user_password, "", new { @class = "text-danger small font-weight-bold" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="col-sm-2 control-label">Confirm Password</label>
+                    <div class="col-sm-10">
+                        @Html.EditorFor(model => model.confirm_password, new
+                                    {
+                                        htmlAttributes = new
+                                        {
+                                            @class = "form-control",
+                                            placeholder = "Confirm Password",
+                                            type = "password"
+                                        }
+                                    })
+                        @Html.ValidationMessageFor(model => model.confirm_password, "", new { @class = "text-danger small font-weight-bold" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="firstName" class="col-sm-2 control-label">Contact #</label>
+                    <div class="col-sm-10">
+                        @*<input type="text" id="contact_number" placeholder="Contact Number" class="form-control">*@
+                        @Html.EditorFor(model => model.contact_num, new
+                   {
+                       htmlAttributes = new
+                       {
+                           @class =
+                            "form-control",
+                           placeholder = "Contact Number"
+                       }
+                   })
+                        @Html.ValidationMessageFor(model => model.contact_num, "", new { @class = "text-danger small font-weight-bold" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="firstName" class="col-sm-2 control-label">House Address</label>
+                    <div class="col-sm-10">
+                        @*<input type="text" id="address" placeholder="House Address" class="form-control">*@
+                        @Html.EditorFor(model => model.user_address, new
+                   {
+                       htmlAttributes = new
+                       {
+                           @class =
+                            "form-control",
+                           placeholder = "House Address"
+                       }
+                   })
+                        @Html.ValidationMessageFor(model => model.user_address, "", new { @class = "text-danger small font-weight-bold" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Gender</label>
+                    <div class="col-sm-10">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <label class="radio-inline">
+                                    @*<input type="radio" id="femaleRadio" value="Female" name="gender">*@
+                                    @Html.RadioButtonFor(model => model.gender, "female", new
+                                {
+                                    @class = "custom-control-input",
+                                id = "female"
+                                })
+
+                                    Female
+                                </label>
+                            </div>
+                            <div class="col-sm-4">
+                                <label class="radio-inline">
+                                    @*<input type="radio" id="maleRadio" value="Male" name="gender">*@
+                                    @Html.RadioButtonFor(model => model.gender, "male", new
+                                {
+                                id = "male"
+                                })
+
+                                    Male
+                                </label>
+                            </div>
+                            <div class="col-sm-4">
+                            </div>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.gender, "", new { @class = "text-danger small font-weight-bold" })
+                    </div>
+                </div>
+                <div class="pull-right">
+                    <button type="submit" class="btn btn-success btn-block" style="width: 200px">Register</button>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+
+
+
+<!--<form class="form-horizontal" role="form">
+
+    <div class="form-group">
+        <label for="firstName" class="col-sm-2 control-label">Full Name</label>
+        <div class="col-sm-10">
+            <input type="text" id="firstName" placeholder="Full Name" class="form-control" autofocus>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="email" class="col-sm-2 control-label">Email</label>
+        <div class="col-sm-10">
+            <input type="email" id="email" placeholder="Email" class="form-control">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="password" class="col-sm-2 control-label">Password</label>
+        <div class="col-sm-10">
+            <input type="password" id="password" placeholder="Password" class="form-control">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="firstName" class="col-sm-2 control-label">Contact #</label>
+        <div class="col-sm-10">
+            <input type="text" id="contact_number" placeholder="Contact Number" class="form-control">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="firstName" class="col-sm-2 control-label">House Address</label>
+        <div class="col-sm-10">
+            <input type="text" id="address" placeholder="House Address" class="form-control">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2">Gender</label>
+        <div class="col-sm-10">
+            <div class="row">
+                <div class="col-sm-4">
+                    <label class="radio-inline">
+                        <input type="radio" id="femaleRadio" value="Female" name="gender">Female
+                    </label>
+                </div>
+                <div class="col-sm-4">
+                    <label class="radio-inline">
+                        <input type="radio" id="maleRadio" value="Male" name="gender">Male
+                    </label>
+                </div>
+                <div class="col-sm-4">
+                </div>
+            </div>
+        </div>
+    </div>-->
+<!-- /.form-group -->
+<!--<div class="pull-right">
+        <button type="submit" class="btn btn-success btn-block" style="width: 200px">Register</button>
+    </div>
+</form>-->
+<!-- /form -->

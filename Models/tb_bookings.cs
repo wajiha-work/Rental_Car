@@ -11,16 +11,27 @@ namespace Rental_Car.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class tb_bookings
     {
         public int booking_id { get; set; }
         public Nullable<int> user_id { get; set; }
         public Nullable<int> car_booked { get; set; }
+
+        [Required]
         public string pickup_location { get; set; }
+
+        [Required]
         public string return_location { get; set; }
+
+        [Required]
         public Nullable<System.DateTime> pickup_datetime { get; set; }
+
+        [Required]
         public Nullable<System.DateTime> return_datetime { get; set; }
+
+
         public Nullable<decimal> sub_total { get; set; }
         public Nullable<System.DateTime> booked_at { get; set; }
     

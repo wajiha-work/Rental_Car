@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Rental_Car.Models.tb_cars>
+@{
+    ViewBag.Title = "Fleet";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<section>
+    <div class="container">
+        <div class="text-center">
+            <h1>Fleet</h1>
+
+            <br>
+
+            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo, alias.</p>
+        </div>
+    </div>
+</section>
+
+<section class="section-background">
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-4 col-sm-4">
+                    <div class="courses-thumb courses-thumb-secondary">
+                        <div class="courses-top">
+                            <div class="courses-image">
+                                <img src="@Html.DisplayFor(modelItem => item.picture)" class="img-responsive" alt="">
+                            </div>
+                            <div class="courses-date">
+                                <span title="passegengers"><i class="fa fa-user"></i> 5</span>
+                                <span title="luggages"><i class="fa fa-briefcase"></i> 4</span>
+                                <span title="doors"><i class="fa fa-sign-out"></i> 4</span>
+                                <span title="transmission"><i class="fa fa-cog"></i> A</span>
+                            </div>
+                        </div>
+
+                        <div class="courses-detail">
+                            <h3><a href="fleet.html">@Html.DisplayFor(modelItem => item.car_name)</a></h3>
+                            <p class="lead"> <strong>$@Html.DisplayFor(modelItem => item.rent_price)</strong> </p>
+                            <p>@Html.DisplayFor(modelItem => item.description)</p>
+                        </div>
+
+                        <div class="courses-info">
+                            <a href="@Url.Action("RentACar", "User", new { id = item.car_id })" class="section-btn btn btn-primary btn-block" >Book Now</a>
+                        </div>
+                    </div>
+                </div>
+            }
+
+
+        </div>
+    </div>
+</section>
+

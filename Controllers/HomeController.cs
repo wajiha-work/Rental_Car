@@ -106,7 +106,11 @@ namespace Rental_Car.Controllers
 
 
 
-       
+       public ActionResult Fleet()
+        {
+            var cars = db.tb_cars.OrderBy(x => x.rent_price).ToList();
+            return View(cars);
+        }
 
     }
 }

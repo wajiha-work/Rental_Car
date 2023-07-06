@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Rental_Car.Models.tb_bookings>
+
+@{
+    ViewBag.Title = "Rentals";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<h2>Rentals</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.pickup_location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.return_location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pickup_datetime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.return_datetime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sub_total)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.booked_at)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tb_cars.car_name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.pickup_location)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.return_location)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pickup_datetime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.return_datetime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sub_total)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.booked_at)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tb_cars.car_name)
+        </td>
+    </tr>
+}
+
+</table>
